@@ -12,21 +12,20 @@ import VerifyPhaseScreen from "./verifyPhase/VerifyPhaseScreen"
 
 function App() {
   const tdna = new TypingDNA()
-  function getPattern() {
-    const tp = tdna.getTypingPattern({
-      type: 0,
-      length: 160
-    })
-    console.log(tp)
+  let email = ''
+
+  function setEmail(newEmail) {
+    email = newEmail;
   }
+
   return (
     <Router>
       <Switch>
         <Route path="/verify">
-          <VerifyPhaseScreen />
+          <VerifyPhaseScreen tdna={tdna} email={email}/>
         </Route>
         <Route path="/">
-          <HomeScreen />
+          <HomeScreen setEmail={setEmail} />
         </Route>
       </Switch>
     </Router>

@@ -56,17 +56,16 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export default function VerifyPhaseScreen () {
+export default function VerifyPhaseScreen ({ email, tdna }) {
+    console.log('got email', email)
     const classes = useStyles()
 
-    async function signIn () {
-        console.log('Checking if exists')
-        try {
-            const userFound = await userExists('example@gmail.com')
-        } catch (error) {
-            console.error(error)
-        }
-
+    function verifyPattern () {
+        const tp = tdna.getTypingPattern({
+            type: 0,
+            length: 160
+        })
+        console.log(tp)
     }
 
     return (
@@ -100,7 +99,7 @@ export default function VerifyPhaseScreen () {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
-                            onClick={signIn}
+                            onClick={verifyPattern}
                         >
                             Verify
                         </Button>

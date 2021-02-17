@@ -12,6 +12,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Icon from '@material-ui/core/Icon';
+import {
+    useHistory,
+} from "react-router-dom";
 import logo from '../images/balance.svg';
 import { userExists } from '../TypingDNA/TypingDnaApi'
 
@@ -55,16 +58,19 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-export default function HomeScreen () {
+export default function HomeScreen ({ setEmail }) {
     const classes = useStyles()
+    const history = useHistory()
 
     async function signIn() {
-        console.log('Checking if exists')
-        try {
-            const userFound = await userExists('example@gmail.com')
-        } catch(error) {
-            console.error(error)
-        }
+        // console.log('Checking if exists')
+        // try {
+        //     const userFound = await userExists('example@gmail.com')
+        // } catch(error) {
+        //     console.error(error)
+        // }
+
+        history.push('/verify')
 
     }
 
@@ -92,6 +98,10 @@ export default function HomeScreen () {
                             name="email"
                             autoComplete="email"
                             autoFocus
+                            onChange={event => {
+                                console.log('entered', event.target.value)
+                                setEmail(event.target.value)
+                            }}
                         />
                         <Button
                             type="submit"
