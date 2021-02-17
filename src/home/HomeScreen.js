@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Icon from '@material-ui/core/Icon';
 import logo from './balance.svg';
+import { userExists } from '../TypingDNA/TypingDnaApi'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -57,6 +58,16 @@ const useStyles = makeStyles((theme) => ({
 export default function HomeScreen () {
     const classes = useStyles()
 
+    async function signIn() {
+        console.log('Checking if exists')
+        try {
+            const userFound = await userExists('example@gmail.com')
+        } catch(error) {
+            console.error(error)
+        }
+
+    }
+
     return (
         <Grid container component="main" className={classes.root}>
             <CssBaseline />
@@ -70,7 +81,7 @@ export default function HomeScreen () {
                     <Typography variant="subtitle1">
                         Court forms made simple
                     </Typography>
-                    <form className={classes.form} noValidate>
+                    <div className={classes.form}>
                         <TextField
                             variant="outlined"
                             margin="normal"
@@ -88,10 +99,11 @@ export default function HomeScreen () {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
+                            onClick={signIn}
                         >
                             Sign In
                         </Button>
-                    </form>
+                    </div>
                 </div>
             </Grid>
         </Grid>

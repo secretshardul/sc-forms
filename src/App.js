@@ -6,7 +6,7 @@ import {
 } from "react-router-dom"
 import logo from './logo.svg';
 import './App.css';
-import TypingDNA from './TypingDNA';
+import TypingDNA from './TypingDNA/TypingDNA';
 import HomeScreen from "./home/HomeScreen"
 import LoginPhaseScreen from "./login/LoginPhaseScreen"
 
