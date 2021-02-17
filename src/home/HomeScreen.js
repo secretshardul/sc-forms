@@ -1,6 +1,9 @@
+import SignInSide from './SignInSide'
+
 function HomeScreen () {
     return (
-        <div>Home</div>
+        // <div>Home</div>
+        <SignInSide />
     )
 }
 
