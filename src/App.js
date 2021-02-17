@@ -8,7 +8,7 @@ import logo from './logo.svg';
 import './App.css';
 import TypingDNA from './TypingDNA/TypingDNA';
 import HomeScreen from "./home/HomeScreen"
-import LoginPhaseScreen from "./login/LoginPhaseScreen"
+import VerifyPhaseScreen from "./verifyPhase/VerifyPhaseScreen"
 
 function App() {
   const tdna = new TypingDNA()
@@ -22,8 +22,8 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/login">
-          <LoginPhaseScreen />
+        <Route path="/verify">
+          <VerifyPhaseScreen />
         </Route>
         <Route path="/">
           <HomeScreen />
