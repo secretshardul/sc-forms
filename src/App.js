@@ -1,7 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
+// eslint-disable-next-line no-restricted-globals
+import TypingDNA from './TypingDNA';
 
 function App() {
+  const tdna = new TypingDNA()
+  function getPattern() {
+    const tp = tdna.getTypingPattern({
+      type: 0,
+      length: 160
+    })
+    console.log(tp)
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -17,6 +27,8 @@ function App() {
         >
           Learn React
         </a>
+        <input id="name-field" />
+        <button onClick={getPattern}>Submit</button>
       </header>
     </div>
   );
