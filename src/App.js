@@ -1,7 +1,14 @@
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom"
 import logo from './logo.svg';
 import './App.css';
-// eslint-disable-next-line no-restricted-globals
 import TypingDNA from './TypingDNA';
+import HomeScreen from "./home/HomeScreen"
+import LoginPhaseScreen from "./login/LoginPhaseScreen"
 
 function App() {
   const tdna = new TypingDNA()
@@ -13,24 +20,16 @@ function App() {
     console.log(tp)
   }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <input id="name-field" />
-        <button onClick={getPattern}>Submit</button>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/login">
+          <LoginPhaseScreen />
+        </Route>
+        <Route path="/">
+          <HomeScreen />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
