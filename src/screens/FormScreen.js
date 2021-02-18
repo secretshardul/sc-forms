@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import { getFormData } from '../Api'
+import { getFormData, getFilledForm } from '../Api'
 import { Button, TextField, Typography } from "@material-ui/core"
 
 const useStyles = makeStyles((theme) => ({
@@ -54,6 +54,7 @@ export default function FormScreen () {
 
     async function submit() {
         console.log('Entered data', formInput)
+        await getFilledForm('OpiIRMeLZOJOP9GLwmLS', formInput)
     }
 
     return (
