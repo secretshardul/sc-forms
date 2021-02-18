@@ -16,7 +16,7 @@ import {
     useHistory,
 } from "react-router-dom";
 import logo from '../images/balance.svg';
-import { userExists } from '../TypingDNA/TypingDnaApi'
+import { userExists } from '../Api'
 
 const useStyles = makeStyles((theme) => ({
     root: {

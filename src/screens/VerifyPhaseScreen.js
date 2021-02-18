@@ -14,7 +14,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Icon from '@material-ui/core/Icon'
 import MuiAlert from '@material-ui/lab/Alert'
 import logo from '../images/balance.svg'
-import { verifyUser } from '../TypingDNA/TypingDnaApi'
+import { verifyUser } from '../Api'
 import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({

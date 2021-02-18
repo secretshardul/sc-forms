@@ -20,7 +20,17 @@ async function verifyUser (id, typingPattern) {
     return (responseBody === 'true')
 }
 
+async function getFormData (formSlug) {
+    console.log('getting form', formSlug)
+    const response = await fetch(baseUrl + 'form/' + formSlug)
+    console.log('got response', response)
+    const responseBody = await response.json()
+    console.log('got response json', responseBody)
+    return responseBody
+}
+
 export {
     userExists,
     verifyUser,
+    getFormData,
 }
