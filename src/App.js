@@ -9,14 +9,12 @@ import './App.css';
 import TypingDNA from './TypingDNA/TypingDNA';
 import HomeScreen from "./home/HomeScreen"
 import VerifyPhaseScreen from "./verifyPhase/VerifyPhaseScreen"
+import { useState } from "react"
+import FormLibraryScreen from "./formLibrary/FormLibraryScreen"
 
 function App() {
   const tdna = new TypingDNA()
-  let email = ''
-
-  function setEmail(newEmail) {
-    email = newEmail;
-  }
+  const [email, setEmail] = useState('')
 
   return (
     <Router>
@@ -24,8 +22,11 @@ function App() {
         <Route path="/verify">
           <VerifyPhaseScreen tdna={tdna} email={email}/>
         </Route>
+        <Route path="/library">
+          <FormLibraryScreen/>
+        </Route>
         <Route path="/">
-          <HomeScreen setEmail={setEmail} />
+          <HomeScreen email={email} setEmail={setEmail} />
         </Route>
       </Switch>
     </Router>

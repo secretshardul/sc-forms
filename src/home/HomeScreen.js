@@ -58,19 +58,18 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-export default function HomeScreen ({ setEmail }) {
+export default function HomeScreen ({ email, setEmail }) {
     const classes = useStyles()
     const history = useHistory()
 
-    async function signIn() {
-        // console.log('Checking if exists')
-        // try {
-        //     const userFound = await userExists('example@gmail.com')
-        // } catch(error) {
-        //     console.error(error)
-        // }
-
-        history.push('/verify')
+    async function verifyUser() {
+        const accountExists = await userExists(email)
+        console.log('Account exists', accountExists)
+        if (accountExists) {
+            history.push('/verify')
+        } else {
+            console.log('Not present, creating new user')
+        }
 
     }
 
@@ -98,10 +97,7 @@ export default function HomeScreen ({ setEmail }) {
                             name="email"
                             autoComplete="email"
                             autoFocus
-                            onChange={event => {
-                                console.log('entered', event.target.value)
-                                setEmail(event.target.value)
-                            }}
+                            onChange={event => setEmail(event.target.value)}
                         />
                         <Button
                             type="submit"
@@ -109,7 +105,7 @@ export default function HomeScreen ({ setEmail }) {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
-                            onClick={signIn}
+                            onClick={verifyUser}
                         >
                             Sign In
                         </Button>

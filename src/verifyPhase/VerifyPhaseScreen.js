@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Icon from '@material-ui/core/Icon'
 import logo from '../images/balance.svg'
-import { userExists } from '../TypingDNA/TypingDnaApi'
+import { verifyUser } from '../TypingDNA/TypingDnaApi'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -60,12 +60,13 @@ export default function VerifyPhaseScreen ({ email, tdna }) {
     console.log('got email', email)
     const classes = useStyles()
 
-    function verifyPattern () {
+    async function verifyPattern () {
         const tp = tdna.getTypingPattern({
             type: 0,
             length: 160
         })
         console.log(tp)
+        const userVerified = await verifyUser(email, tp)
     }
 
     return (
