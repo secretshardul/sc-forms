@@ -1,4 +1,5 @@
 const baseUrl = 'https://us-central1-sc-forms-backend.cloudfunctions.net/app/'
+// const baseUrl = 'http://localhost:5001/sc-forms-backend/us-central1/app/'
 
 async function userExists(id) {
     const response = await fetch(baseUrl + 'userPresent/' + id)
@@ -8,8 +9,15 @@ async function userExists(id) {
 }
 
 async function verifyUser (id, typingPattern) {
-
-    return false
+    console.log('verifying', id)
+    const response = await fetch(baseUrl + 'verify/' + id, {
+        method: 'POST',
+        body: new URLSearchParams({
+            tp: typingPattern,
+        }),
+    })
+    const responseBody = await response.text()
+    return (responseBody === 'true')
 }
 
 export {
