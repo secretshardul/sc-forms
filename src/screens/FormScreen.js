@@ -14,24 +14,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-function formComponent(field) {
-    let component = (
-        <TextField
-            key={field.id}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id={field.id}
-            label={field.label}
-        />
-    )
-    return component
-}
+
 export default function FormScreen () {
     const classes = useStyles()
     const [formData, setFormData] = useState([])
     const [formName, setFormName] = useState('')
+    const [formInput, setFormInput] = useState([])
+
     useEffect(() => {
         async function readData() {
             const data = await getFormData('ao')
@@ -41,6 +30,31 @@ export default function FormScreen () {
         }
         readData()
     }, [])
+
+    function formComponent (field) {
+        let component = (
+            <TextField
+                key={field.id}
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id={field.id}
+                label={field.label}
+                onChange={(event) => {
+                    setFormInput({
+                        ...formInput,
+                        [field.id]: event.target.value,
+                    })
+                }}
+            />
+        )
+        return component
+    }
+
+    async function submit() {
+        console.log('Entered data', formInput)
+    }
 
     return (
         <Container maxWidth="sm" className={classes.root}>
@@ -56,6 +70,7 @@ export default function FormScreen () {
                         color="primary"
                         fullWidth
                         className={classes.submit}
+                        onClick={submit}
                     >
                         Submit
                     </Button>
