@@ -1,0 +1,30 @@
+query CastQuery($eid: String!) {
+      data: cast(eid: $eid) {
+        ...castFieldsFragment
+        __typename
+      }
+    }
+
+    fragment castFieldsFragment on Cast {
+      id
+      eid
+      type
+      name
+      title
+      config
+      location
+      createdAt
+      updatedAt
+      fieldInfo
+      exampleData
+      organization {
+        id
+        eid
+        name
+        slug
+        currentUserRole
+        config
+        __typename
+      }
+      __typename
+    }

@@ -23,10 +23,16 @@ export default function FormScreen () {
 
     useEffect(() => {
         async function readData() {
-            const data = await getFormData('ao')
-            setFormName(data.name)
-            console.log('Got fields', data.config.pages[0].fields)
-            setFormData(data.config.pages[0].fields)
+            try {
+                const data = await getFormData('OpiIRMeLZOJOP9GLwmLS')
+                setFormName(data.name)
+                const fields = data.fieldInfo.fields
+                console.log('Got fields', fields)
+                setFormData(fields)
+            } catch(error) {
+                console.log(error)
+            }
+
         }
         readData()
     }, [])
@@ -40,7 +46,7 @@ export default function FormScreen () {
                 required
                 fullWidth
                 id={field.id}
-                label={field.label}
+                label={field.name}
                 onChange={(event) => {
                     setFormInput({
                         ...formInput,
