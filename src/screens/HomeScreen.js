@@ -12,9 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Icon from '@material-ui/core/Icon';
-import {
-    useHistory,
-} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import logo from '../images/balance.svg';
 import { userExists } from '../Api'
 

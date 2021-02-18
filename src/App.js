@@ -31,7 +31,7 @@ function App() {
           <SavedFormsScreen />
         </Route>
         <Route path="/form">
-          <FormScreen />
+          <FormScreen tdna={tdna} email={email}/>
         </Route>
         <Route path="/">
           <HomeScreen email={email} setEmail={setEmail} />

@@ -22,6 +22,19 @@ async function verifyUser (id, typingPattern) {
     return (responseBody === 'true')
 }
 
+async function savePattern (id, typingPattern) {
+    console.log('saving pattern for', id)
+    const response = await fetch(baseUrl + 'save/' + id, {
+        method: 'POST',
+        body: new URLSearchParams({
+            tp: typingPattern,
+        }),
+    })
+    const responseBody = await response.text()
+    console.log('Saved pattern', responseBody)
+    return (responseBody === 'true')
+}
+
 async function getFormData (formSlug) {
     console.log('getting form', formSlug)
     const response = await fetch(baseUrl + 'form/' + formSlug)
@@ -47,4 +60,5 @@ export {
     verifyUser,
     getFormData,
     getFilledForm,
+    savePattern,
 }

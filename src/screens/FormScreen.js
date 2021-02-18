@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import { getFormData, getFilledForm } from '../Api'
+import { getFormData, getFilledForm, savePattern } from '../Api'
 import { Button, TextField, Typography } from "@material-ui/core"
+import { useHistory } from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -15,11 +16,12 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-export default function FormScreen () {
+export default function FormScreen ({ tdna, email }) {
     const classes = useStyles()
     const [formData, setFormData] = useState([])
     const [formName, setFormName] = useState('')
     const [formInput, setFormInput] = useState([])
+    const history = useHistory()
 
     useEffect(() => {
         async function readData() {
@@ -37,6 +39,15 @@ export default function FormScreen () {
         readData()
     }, [])
 
+    async function getPattern() {
+        const tp = tdna.getTypingPattern({
+            type: 0,
+            length: 160
+        })
+        console.log(tp)
+        await savePattern(email, tp)
+    }
+
     function formComponent (field) {
         let component = (
             <TextField
@@ -53,6 +64,7 @@ export default function FormScreen () {
                         [field.id]: event.target.value,
                     })
                 }}
+                onClick={getPattern}
             />
         )
         return component
@@ -61,6 +73,7 @@ export default function FormScreen () {
     async function submit() {
         console.log('Entered data', formInput)
         await getFilledForm('OpiIRMeLZOJOP9GLwmLS', formInput)
+        history.push('/saved-forms')
     }
 
     return (
