@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import TextField from '@material-ui/core/TextField'
@@ -12,8 +12,11 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Icon from '@material-ui/core/Icon'
+import Snackbar from '@material-ui/core/Snackbar'
+import MuiAlert from '@material-ui/lab/Alert'
 import logo from '../images/balance.svg'
 import { verifyUser } from '../TypingDNA/TypingDnaApi'
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -56,9 +59,15 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
+function Alert (props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />
+}
+
 export default function VerifyPhaseScreen ({ email, tdna }) {
-    console.log('got email', email)
     const classes = useStyles()
+    const history = useHistory()
+    const [validationFailed, setValidatationState] = useState(false)
+    console.log('got email', email)
 
     async function verifyPattern () {
         const tp = tdna.getTypingPattern({
@@ -67,6 +76,12 @@ export default function VerifyPhaseScreen ({ email, tdna }) {
         })
         console.log(tp)
         const userVerified = await verifyUser(email, tp)
+        console.log('User verified', userVerified)
+        if(userVerified) {
+            history.push('/saved-forms')
+        } else {
+            setValidatationState(true)
+        }
     }
 
     return (
@@ -93,6 +108,7 @@ export default function VerifyPhaseScreen ({ email, tdna }) {
                             multiline={true}
                             rows={4}
                             autoFocus
+                            error={validationFailed}
                         />
                         <Button
                             type="submit"
@@ -104,6 +120,12 @@ export default function VerifyPhaseScreen ({ email, tdna }) {
                         >
                             Verify
                         </Button>
+
+                        {
+                            validationFailed && (
+                                <Alert severity="error">Pattern does not match!</Alert>
+                            )
+                        }
                     </div>
                 </div>
             </Grid>

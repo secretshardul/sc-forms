@@ -9,7 +9,7 @@ async function userExists(id) {
 
 async function verifyUser (id, typingPattern) {
 
-    return true
+    return false
 }
 
 export {

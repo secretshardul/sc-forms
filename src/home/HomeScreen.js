@@ -69,6 +69,7 @@ export default function HomeScreen ({ email, setEmail }) {
             history.push('/verify')
         } else {
             console.log('Not present, creating new user')
+            history.push('/library')
         }
 
     }
