@@ -41,8 +41,8 @@ export default function ButtonAppBar () {
                     <Typography variant="h6" className={classes.title}>
                         court.ly
                     </Typography>
-                    <Button color="inherit" onClick={() => navigate('/')}>Library</Button>
-                    <Button color="inherit" onClick={() => navigate('/buy')}>Saved forms</Button>
+                    <Button color="inherit" onClick={() => navigate('/library')}>Library</Button>
+                    <Button color="inherit" onClick={() => navigate('/saved-forms')}>Saved forms</Button>
                 </Toolbar>
             </AppBar>
         </div>

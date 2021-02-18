@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid'
 import GridList from '@material-ui/core/GridList'
 import GridListTile from '@material-ui/core/GridListTile'
 import ButtonAppBar from "../AppBar"
-// import PlantCard from './components/PlantCard'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
 import { useHistory } from "react-router-dom"
@@ -64,21 +63,3 @@ export default function FormLibraryScreen () {
         </Fragment>
     )
 }
-
-// import { Fragment } from "react"
-// import { useHistory } from "react-router-dom"
-
-// export default function FormLibraryScreen() {
-//     const history = useHistory()
-
-//     function fillForm() {
-//         history.push('/form')
-//     }
-//     return (
-//         <Fragment>
-//             <div>Library</div>
-//             <button onClick={fillForm}>Fill form</button>
-//         </Fragment>
-//     )
-// }
-
