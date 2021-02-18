@@ -12,6 +12,7 @@ import VerifyPhaseScreen from "./screens/VerifyPhaseScreen"
 import { useState } from "react"
 import FormLibraryScreen from "./screens/FormLibraryScreen"
 import SavedFormsScreen from "./screens/SavedFormsScreen"
+import FormScreen from "./screens/FormScreen"
 
 function App() {
   const tdna = new TypingDNA()
@@ -28,6 +29,9 @@ function App() {
         </Route>
         <Route path="/saved-forms">
           <SavedFormsScreen />
+        </Route>
+        <Route path="/form">
+          <FormScreen />
         </Route>
         <Route path="/">
           <HomeScreen email={email} setEmail={setEmail} />
