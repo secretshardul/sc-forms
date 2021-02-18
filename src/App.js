@@ -7,11 +7,11 @@ import {
 import logo from './logo.svg';
 import './App.css';
 import TypingDNA from './TypingDNA/TypingDNA';
-import HomeScreen from "./home/HomeScreen"
-import VerifyPhaseScreen from "./verifyPhase/VerifyPhaseScreen"
+import HomeScreen from "./screens/HomeScreen"
+import VerifyPhaseScreen from "./screens/VerifyPhaseScreen"
 import { useState } from "react"
-import FormLibraryScreen from "./formLibrary/FormLibraryScreen"
-import SavedFormsScreen from "./savedForms/SavedFormsScreen"
+import FormLibraryScreen from "./screens/FormLibraryScreen"
+import SavedFormsScreen from "./screens/SavedFormsScreen"
 
 function App() {
   const tdna = new TypingDNA()
